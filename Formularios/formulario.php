@@ -18,7 +18,7 @@ $errores ='';
             // $nombre = trim($nombre);//quita espaciados al inicio y al final 
             // $nombre = htmlspecialchars($nombre);//evita la incercion de html
             // $nombre = stripslashes($nombre);//remueve los simbolos
-            $nombre = filter_var($correo, FILTER_SANITIZE_STRING);
+            $nombre = filter_var($correo, FILTER_SANITIZE_EMAIL);
             echo "Tu nombre es: $correo </br>";
         }else{
             $errores .= 'Por favor agrega un correo valido </br>';
