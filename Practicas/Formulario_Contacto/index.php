@@ -24,6 +24,24 @@ if(isset($_POST['submit'])){
         $errores .= 'Porfavor ingresa un Correo <br>';
 
     }
+    if(!empty($mensaje)){
+        $mensaje = htmlspecialchars($mensaje);
+        $mensaje = trim($mensaje);
+        $mensaje = stripslashes($mensaje);
+    }else {
+        $errores .= 'Porfavor ingresa el mensaje <br>';
+    }
+
+    if(!$errores){
+        $enviar_a = 'mariordz0710@gmail.com';
+        $asundo = 'correo enviado del formulario';
+        $mensaje_preparado = "DE: $nombre  \n";
+        $mensaje_preparado = "CPRREO: $correo \n";
+        $mensaje_preparado = "MENSAJE:" . $mensaje; 
+
+        //mail($enviar_a, $asunto, $mensaje_preparado);
+        $enviado = true;
+    }
 }
 
 require 'index.view.php';
