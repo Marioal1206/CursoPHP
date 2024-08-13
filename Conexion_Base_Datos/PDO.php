@@ -1,8 +1,8 @@
 <?php
-$id = $_GET['id'];
+//$id = $_GET['id'];
 
 try{
-    $conexion = new PDO('mysql:host=localhost;dbname=prueba_datos','root', '');
+    $conexion = new PDO('mysql:host=localhost;dbname=prueba_consola','root', '');
     echo 'Conexion OK <br>';
 
     // $resultados = $conexion -> query("SELECT * FROM usuarios where ID = $id");
@@ -14,11 +14,19 @@ try{
 
 
 
-    $resultado = $conexion->prepare('SELECT * FROM usuarios where ID = :id');
+    $resultado = $conexion->prepare('SELECT * FROM usuarios');
 
-    $resultado->execute(array(':id' => 1));
-    $respuestas = $resultado->fetch();
-    print_r($respuestas);
+    $resultado->execute(array());
+    $respuestas = $resultado->fetchAll();
+
+
+    //print_r($respuestas);
+
+    foreach($respuestas as $fila){
+        echo $fila['id'] .'--';
+        echo $fila['nombre'] .'--';
+        echo $fila['email'] .'-- </br>';
+    }
 
 }catch(PDOException $e){
     //Mostrar Error
